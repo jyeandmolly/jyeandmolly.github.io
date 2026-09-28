@@ -53,8 +53,8 @@ window.WEDDING = {
   /* ---------- Welcome ---------- */
   welcomeTitle: "We're getting married",
   welcome: [
-    "We'd love you to join us for an afternoon and evening of good food, good company and far too much dancing at Camperdown Commons.",
-    "Everything you need to know is on this page, and we'll keep it updated as the day gets closer.",
+    "We'd love you to join us for an afternoon and evening of good food, good company and dancing at Camperdown Commons!",
+    "Hopefully everything you need to know is on this page, we'll keep it updated as the day gets closer.",
   ],
 
   /* ---------- On the day ----------
