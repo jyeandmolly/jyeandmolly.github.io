@@ -154,7 +154,7 @@
         return el("figure", {}, [b, g.caption ? el("figcaption", { text: g.caption }) : null]);
       }))
     : el("p", { class: "empty", text: "Photos coming soon." });
-  site.appendChild(el("section", { id: "gallery", class: "alt" }, [el("div", { class: "wide" }, [el("h2", { text: "Gallery" }), gal])]));
+  site.appendChild(el("section", { id: "gallery", class: "alt" }, [el("div", { class: "wide" }, [el("h2", { text: "Gallery" }), W.galleryNote ? el("p", { class: "lead", style: "text-align:center;margin-bottom:2rem", text: W.galleryNote }) : null, gal])]));
 
   // ---- Wishing well
   site.appendChild(el("section", { id: "wishing-well" }, [
