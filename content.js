@@ -45,6 +45,8 @@ window.WEDDING = {
   gallery: [
     { file: "photos/proposal.jpg", caption: "" },
     { file: "photos/dinner-date.jpg", caption: "" },
+    { file: "photos/jyemollyhike.jpg", caption: "" },
+    { file: "photos/jyemolly.jpg", caption: "" },
   ],
   mapImage: "photos/map.jpg",   // the map in "Getting there" ("" to hide it)
 
@@ -80,7 +82,7 @@ window.WEDDING = {
     { heading: "By bus",
       text: "Plenty of buses run along Parramatta Road, with stops near Mallett Street and Missenden Road." },
     { heading: "By car",
-      text: "Parking is tricky. There's none on site, and nearby streets are mostly 2-hour limits that are closely monitored, so we'd really recommend a cab, Uber or public transport." },
+      text: "Parking is tricky. There's a couple of small carparks close by, but these tend to be busy, and nearby streets are mostly 2-hour limits that are closely monitored, so we'd probably recommend a cab, Uber or public transport." },
     { heading: "Cab or Uber",
       text: "Drop-off is right at 31A Mallett Street." },
   ],
@@ -92,19 +94,17 @@ window.WEDDING = {
   /* ---------- Wishing well ---------- */
   wishingWell: [
     "Having you there is the only gift we need!",
-    "However, if you would like to contribute something small toward the evening, there will be a wishing well on the night.",
+    "However, if you would like to contribute something small toward the evening, there will be a wishing well on the night, or you can follow this link (TBC)",
   ],
 
   /* ---------- FAQ ---------- */
   faqs: [
     { q: "Can I bring a plus-one?",
-      a: "TBC" },
-    { q: "Are kids welcome?",
-      a: "TBC" },
+      a: "No way Jose" },
     { q: "What if it rains?",
       a: "TBC — the venue has covered spaces, so the day goes ahead either way." },
     { q: "I have dietary requirements.",
-      a: "Let us know in the RSVP form and we'll pass it on to the kitchen." },
+      a: "Let us know in the RSVP form and we'll make sure there's something there for you!" },
     { q: "Where can I park?",
       a: "Parking is tricky around the venue. There's none on site and nearby streets are time-limited, so we'd suggest a cab, Uber or public transport." },
     { q: "Who do I contact with questions?",
