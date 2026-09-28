@@ -62,7 +62,7 @@
   }
 
   // ---- Nav
-  var links = [["#day","The day"],["#travel","Travel & stay"],["#gallery","Gallery"],["#wishing-well","Wishing well"],["#faq","FAQ"],["#rsvp","RSVP"]];
+  var links = [["#day","The day"],["#wishing-well","Wishing well"],["#travel","Getting there"],["#gallery","Gallery"],["#faq","Questions"],["#rsvp","RSVP"]];
   site.appendChild(el("nav", { class: "nav", "aria-label": "Sections" }, [
     el("a", { class: "mono", href: "#top", text: W.monogram }),
     el("ul", {}, links.map(function (l) { return el("li", {}, [el("a", { href: l[0], text: l[1] })]); }))
@@ -125,6 +125,11 @@
     ])
   ]));
 
+  // ---- Wishing well
+  site.appendChild(el("section", { id: "wishing-well" }, [
+    el("div", { class: "wrap" }, [el("h2", { text: "Wishing well" })].concat(paras(W.wishingWell)))
+  ]));
+
   // ---- Travel & stay
   var stayList = (W.accommodation || []).length
     ? el("ul", {}, W.accommodation.map(function (a) {
@@ -132,7 +137,7 @@
         return el("li", {}, [el("h3", {}, [name]), el("div", { class: "small", text: [a.area, a.note].filter(Boolean).join(", ") })]);
       }))
     : el("p", { class: "small", text: W.accommodationNote });
-  site.appendChild(el("section", { id: "travel" }, [
+  site.appendChild(el("section", { id: "travel", class: "alt" }, [
     el("div", { class: "wide" }, [
       el("h2", { text: "Getting there" }),
       el("div", { class: "travel" }, W.travel.map(function (t) { return el("div", {}, [el("h3", { text: t.heading }), el("p", { text: t.text })]); })),
@@ -154,12 +159,7 @@
         return el("figure", {}, [b, g.caption ? el("figcaption", { text: g.caption }) : null]);
       }))
     : el("p", { class: "empty", text: "Photos coming soon." });
-  site.appendChild(el("section", { id: "gallery", class: "alt" }, [el("div", { class: "wide" }, [el("h2", { text: "Gallery" }), W.galleryNote ? el("p", { class: "lead", style: "text-align:center;margin-bottom:2rem", text: W.galleryNote }) : null, gal])]));
-
-  // ---- Wishing well
-  site.appendChild(el("section", { id: "wishing-well" }, [
-    el("div", { class: "wrap" }, [el("h2", { text: "Wishing well" })].concat(paras(W.wishingWell)))
-  ]));
+  site.appendChild(el("section", { id: "gallery" }, [el("div", { class: "wide" }, [el("h2", { text: "Gallery" }), W.galleryNote ? el("p", { class: "lead", style: "text-align:center;margin-bottom:2rem", text: W.galleryNote }) : null, gal])]));
 
   // ---- FAQ
   site.appendChild(el("section", { id: "faq", class: "alt" }, [
