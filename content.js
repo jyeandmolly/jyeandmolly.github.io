@@ -94,15 +94,15 @@ window.WEDDING = {
   /* ---------- Wishing well ---------- */
   wishingWell: [
     "Having you there is the only gift we need!",
-    "However, if you would like to contribute something small toward the evening, there will be a wishing well on the night, or you can follow this link (TBC)",
+    "However, if you would like to contribute something toward the evening, there will be a wishing well on the night, or you can follow this link to transfer digitally (TBC)",
   ],
 
   /* ---------- FAQ ---------- */
   faqs: [
-    { q: "Can I bring a plus-one?",
-      a: "No way Jose" },
+    { q: "What is the dinner on the previous night?",
+      a: "We're going to book a nearby pub (venue TBC) for anybody that wants to come for a causal dinner/drinks the night before, just let us know if you want to come along!" },
     { q: "What if it rains?",
-      a: "TBC — the venue has covered spaces, so the day goes ahead either way." },
+      a: "The venue has covered spaces, so the day will go ahead either way." },
     { q: "I have dietary requirements.",
       a: "Let us know in the RSVP form and we'll make sure there's something there for you!" },
     { q: "Where can I park?",
