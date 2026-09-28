@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Jye & Molly | 3 July 2027</title>
+<meta name="description" content="Everything you need to know about Jye and Molly's wedding.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Pinyon+Script&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<!-- You shouldn't need to edit this file. Change words and photos in content.js -->
+<div id="site"></div>
+<dialog id="lightbox"><img alt=""></dialog>
+
+<script src="content.js"></script>
+<script>
+(function () {
+  var W = window.WEDDING;
+  var site = document.getElementById("site");
+
+  if (!W) {
+    site.innerHTML = '<div class="oops"><h3>Small typo in content.js</h3><p>The site couldn’t read content.js. Check the last thing you changed for a missing comma or quote mark.</p></div>';
+    return;
+  }
+
+  // Build elements safely (text is never treated as code)
+  function el(tag, attrs, kids) {
+    var n = document.createElement(tag);
+    for (var k in (attrs || {})) {
+      if (k === "text") n.textContent = attrs[k];
+      else if (k === "html") n.innerHTML = attrs[k];
+      else n.setAttribute(k, attrs[k]);
+    }
+    (kids || []).forEach(function (c) { if (c) n.appendChild(typeof c === "string" ? document.createTextNode(c) : c); });
+    return n;
+  }
+  function paras(list, cls) { return (list || []).map(function (t) { return el("p", { text: t, class: cls || "" }); }); }
+
+  var ICONS = {
+    arrive: '<path d="M12 44V22l16-10 16 10v22"/><path d="M24 44V31h8v13"/><path d="M8 44h40"/><path d="M40 14v-4h4v7"/>',
+    rings:  '<circle cx="22" cy="33" r="11"/><circle cx="34" cy="33" r="11"/><path d="M18 18l4-6 4 6-4 4z"/>',
+    drinks: '<path d="M14 12h12l-2 14a4 4 0 0 1-8 0z"/><path d="M20 30v14M15 44h10"/><path d="M32 16h12l-2 12a4 4 0 0 1-8 0z"/><path d="M38 32v12M33 44h10"/><path d="M26 10l6 4"/>',
+    dinner: '<circle cx="28" cy="30" r="14"/><circle cx="28" cy="30" r="9"/><path d="M8 14v10a3 3 0 0 0 3 3v17M8 14v8M11 14v8M14 14v10a3 3 0 0 1-3 3"/><path d="M48 14c-4 2-5 8-5 13h5v17"/>',
+    dance:  '<path d="M22 40V14l20-4v26"/><circle cx="17" cy="40" r="5"/><circle cx="37" cy="36" r="5"/><path d="M22 20l20-4"/>',
+    home:   '<path d="M40 12a14 14 0 1 0 6 20A11 11 0 0 1 40 12z"/><path d="M14 16l1.5 3 3 .5-2.2 2 .6 3-2.9-1.5-2.9 1.5.6-3-2.2-2 3-.5z"/>'
+  };
+  function icon(name) {
+    var s = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+    s.setAttribute("viewBox", "0 0 56 56"); s.setAttribute("aria-hidden", "true");
+    s.innerHTML = ICONS[name] || ICONS.rings;
+    return s;
+  }
+
+  function rsvpButton(cls) {
+    var has = !!W.rsvpLink;
+    return el("a", { class: "btn " + (cls || ""), href: has ? W.rsvpLink : "#rsvp",
+      target: has ? "_blank" : "", rel: "noopener", "aria-disabled": has ? "false" : "true",
+      text: has ? "RSVP" : "RSVP opens soon" });
+  }
+
+  // ---- Nav
+  var links = [["#day","The day"],["#travel","Travel & stay"],["#gallery","Gallery"],["#wishing-well","Wishing well"],["#faq","FAQ"],["#rsvp","RSVP"]];
+  site.appendChild(el("nav", { class: "nav", "aria-label": "Sections" }, [
+    el("a", { class: "mono", href: "#top", text: W.monogram }),
+    el("ul", {}, links.map(function (l) { return el("li", {}, [el("a", { href: l[0], text: l[1] })]); }))
+  ]));
+
+  // Photos that fade from one to the next
+  function slideshow(box, files, ms) {
+    files = (files || []).filter(Boolean);
+    var slides = files.map(function (f, i) {
+      var d = el("div", { class: "slide" + (i === 0 ? " on" : ""), role: "img", "aria-label": "Photo" });
+      d.style.backgroundImage = "url('" + f + "')";
+      box.appendChild(d); return d;
+    });
+    var i = 0;
+    if (slides.length > 1) setInterval(function () {
+      slides[i].classList.remove("on"); i = (i + 1) % slides.length; slides[i].classList.add("on");
+    }, ms || 6000);
+    return slides.length;
+  }
+
+  // ---- Hero
+  var heroSlides = el("div", { class: "slides", "aria-hidden": "true" });
+  var hero = el("header", { class: "hero", id: "top" }, [
+    heroSlides,
+    el("div", {}, [
+      el("h1", {}, [W.names.first, el("span", { class: "amp", text: "and" }), W.names.second]),
+      el("p", { class: "when", text: W.date + "  |  " + W.venue }),
+      rsvpButton()
+    ])
+  ]);
+  if (slideshow(heroSlides, W.heroPhotos, 6000)) hero.classList.add("has-photo");
+  site.appendChild(hero);
+
+  // ---- Welcome + countdown
+  var cd = el("div", { class: "countdown" });
+  var days = Math.ceil((new Date(W.dateISO) - new Date()) / 86400000);
+  if (days > 1) cd.append(el("strong", { text: String(days) }), "days to go");
+  else if (days >= 0) cd.append(el("strong", { text: days === 1 ? "Tomorrow" : "Today" }));
+  site.appendChild(el("section", { id: "welcome" }, [
+    el("div", { class: "wrap" }, [el("h2", { text: W.welcomeTitle })].concat(paras(W.welcome, "lead"), [cd]))
+  ]));
+
+  // ---- The day: schedule, venue, dress code
+  site.appendChild(el("section", { id: "day", class: "alt" }, [
+    el("div", { class: "wide" }, [
+      el("h2", { text: "The day" }),
+      el("p", { class: "small", style: "text-align:center", text: W.scheduleNote }),
+      el("ol", { class: "timeline" }, W.schedule.map(function (s) {
+        return el("li", {}, [icon(s.icon), el("div", { class: "t", text: s.time }), el("div", { class: "tt", text: s.title })]);
+      })),
+      el("div", { class: "venue" }, [
+        (function () { var b = el("div", { class: "slides venue-photos" }); return slideshow(b, W.venuePhotos, 4500) ? b : null; })(),
+        el("div", { class: "venue-text" }, [
+          el("div", {}, [el("div", { class: "label", text: "Where" }), el("h3", { text: W.venue }),
+            el("p", { text: W.address }), el("a", { href: W.mapLink, target: "_blank", rel: "noopener", text: "Open in Maps" })]),
+          el("div", {}, [el("div", { class: "label", text: "Dress code" }), el("h3", { text: W.dressCode.title }),
+            el("p", { text: W.dressCode.text })])
+        ])
+      ])
+    ])
+  ]));
+
+  // ---- Travel & stay
+  var stayList = (W.accommodation || []).length
+    ? el("ul", {}, W.accommodation.map(function (a) {
+        var name = a.link ? el("a", { href: a.link, target: "_blank", rel: "noopener", text: a.name }) : el("span", { text: a.name });
+        return el("li", {}, [el("h3", {}, [name]), el("div", { class: "small", text: [a.area, a.note].filter(Boolean).join(", ") })]);
+      }))
+    : el("p", { class: "small", text: W.accommodationNote });
+  site.appendChild(el("section", { id: "travel" }, [
+    el("div", { class: "wide" }, [
+      el("h2", { text: "Getting there" }),
+      el("div", { class: "travel" }, W.travel.map(function (t) { return el("div", {}, [el("h3", { text: t.heading }), el("p", { text: t.text })]); })),
+      W.mapImage ? el("a", { class: "map", href: W.mapLink, target: "_blank", rel: "noopener", "aria-label": "Open the venue in Google Maps" }, [
+        el("img", { src: W.mapImage, alt: "Map showing Camperdown Commons near Newtown Station", loading: "lazy" }),
+        el("span", { class: "small", text: "Tap the map for directions. Map data \u00a9 Google" })
+      ]) : null,
+      el("div", { class: "stay" }, [el("h3", { text: "Staying nearby" }), stayList])
+    ])
+  ]));
+
+  // ---- Gallery
+  var box = document.getElementById("lightbox");
+  box.addEventListener("click", function () { box.close(); });
+  var gal = (W.gallery || []).length
+    ? el("div", { class: "gallery", style: "--cols:" + Math.min(3, W.gallery.length) + ";max-width:" + [0, 30, 48, 64][Math.min(3, W.gallery.length)] + "rem;margin:0 auto" }, W.gallery.map(function (g) {
+        var b = el("button", { "aria-label": "Enlarge photo" }, [el("img", { src: g.file, alt: g.caption || "", loading: "lazy" })]);
+        b.addEventListener("click", function () { box.querySelector("img").src = g.file; box.showModal(); });
+        return el("figure", {}, [b, g.caption ? el("figcaption", { text: g.caption }) : null]);
+      }))
+    : el("p", { class: "empty", text: "Photos coming soon." });
+  site.appendChild(el("section", { id: "gallery", class: "alt" }, [el("div", { class: "wide" }, [el("h2", { text: "Gallery" }), gal])]));
+
+  // ---- Wishing well
+  site.appendChild(el("section", { id: "wishing-well" }, [
+    el("div", { class: "wrap" }, [el("h2", { text: "Wishing well" })].concat(paras(W.wishingWell)))
+  ]));
+
+  // ---- FAQ
+  site.appendChild(el("section", { id: "faq", class: "alt" }, [
+    el("h2", { text: "Questions" }),
+    el("div", { class: "faq" }, W.faqs.map(function (f) {
+      var contacts = f.showContacts ? el("ul", { class: "contacts" }, (W.contacts || []).map(function (c) {
+        return el("li", {}, [c.name + ": ", el("a", { href: "tel:" + c.phone.replace(/\s/g, ""), text: c.phone })]);
+      })) : null;
+      return el("details", {}, [el("summary", { text: f.q }), el("p", { text: f.a }), contacts]);
+    }))
+  ]));
+
+  // ---- RSVP
+  site.appendChild(el("section", { id: "rsvp", class: "rsvp" }, [
+    el("div", { class: "wrap" }, [
+      el("h2", { text: "Kindly reply" }),
+      el("p", { text: "Please let us know if you can make it by " + W.rsvpBy + "." }),
+      rsvpButton()
+    ])
+  ]));
+
+  site.appendChild(el("footer", {}, [el("span", { class: "mono", text: W.monogram }), W.fullNames]));
+})();
+</script>
+</body>
+</html>

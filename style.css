@@ -1,0 +1,182 @@
+/* Colours and fonts — change these to restyle the whole site */
+:root {
+  --paper: #F1EEE6;       /* page background */
+  --paper-deep: #E6E1D5;  /* alternate section background */
+  --ink: #2F2C26;         /* main text */
+  --muted: #6B665C;       /* secondary text */
+  --green: #3E4A37;       /* deep eucalyptus */
+  --sage: #8E9B80;        /* soft green lines and icons */
+  --wheat: #B39A6B;       /* small accents */
+  --on-green: #F4F1EA;    /* text on green */
+
+  --script: "Pinyon Script", cursive;
+  --serif: "Cormorant Garamond", Georgia, serif;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--serif);
+  font-size: 1.2rem;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+img { max-width: 100%; display: block; }
+a { color: inherit; }
+:focus-visible { outline: 2px solid var(--wheat); outline-offset: 3px; }
+
+/* ---------- Nav ---------- */
+.nav {
+  position: sticky; top: 0; z-index: 10;
+  background: color-mix(in srgb, var(--paper) 94%, transparent);
+  backdrop-filter: blur(6px);
+  border-bottom: 1px solid color-mix(in srgb, var(--sage) 35%, transparent);
+  text-align: center;
+  padding: .4rem 1rem .6rem;
+}
+.nav .mono { font-family: var(--script); font-size: 2.3rem; line-height: 1; color: var(--green); text-decoration: none; }
+.nav ul { list-style: none; margin: .2rem 0 0; padding: 0; display: flex; flex-wrap: wrap; justify-content: center; gap: .1rem 1.6rem; font-size: 1.02rem; }
+.nav a { text-decoration: none; color: var(--muted); }
+.nav a:hover { color: var(--green); }
+
+/* ---------- Hero ---------- */
+.hero {
+  position: relative;
+  min-height: min(88vh, 760px);
+  display: grid; place-items: center;
+  text-align: center;
+  color: var(--on-green);
+  background: var(--green) center/cover no-repeat;
+  padding: 4rem 1rem;
+  overflow: hidden;
+}
+.hero::before {
+  content: ""; position: absolute; inset: 0;
+  background: linear-gradient(180deg, rgba(30,34,26,.25), rgba(30,34,26,.5));
+}
+.hero:not(.has-photo)::after {
+  /* quiet leaf-vein texture used until a photo is added */
+  content: ""; position: absolute; inset: 0; opacity: .08;
+  background: repeating-linear-gradient(115deg, transparent 0 38px, var(--on-green) 38px 39px);
+}
+.hero > div:not(.slides) { position: relative; z-index: 1; text-shadow: 0 1px 18px rgba(20,24,18,.45); }
+.hero::before { z-index: 1; }
+
+/* fading photos (hero and venue) */
+.slides { position: absolute; inset: 0; }
+.slide { position: absolute; inset: 0; background: center/cover no-repeat; opacity: 0; transition: opacity 1.4s ease; }
+.slide.on { opacity: 1; }
+
+/* venue photos beside the details */
+.venue { display: grid; grid-template-columns: 1.1fr 1fr; gap: 3rem; align-items: center; margin-top: 3.5rem; }
+.venue-photos { position: relative; aspect-ratio: 4 / 3; overflow: hidden; }
+.venue-text { display: grid; gap: 2.2rem; text-align: center; }
+.venue-text .label { font-style: italic; color: var(--muted); font-size: 1rem; }
+@media (max-width: 760px) { .venue { grid-template-columns: 1fr; gap: 2rem; } }
+.faq .contacts { list-style: none; padding: 0; margin: .4rem 0 0; }
+.hero h1 {
+  font-family: var(--script); font-weight: 400;
+  font-size: clamp(3.6rem, 12vw, 8.5rem);
+  line-height: .95; margin: 0;
+}
+.hero h1 .amp { display: block; font-size: .5em; margin: .1em 0 .05em; color: color-mix(in srgb, var(--on-green) 75%, var(--wheat)); }
+.hero .when { font-style: italic; font-size: clamp(1.2rem, 3vw, 1.6rem); letter-spacing: .06em; margin: 1.4rem 0 2rem; }
+.btn {
+  display: inline-block; text-decoration: none;
+  font-family: var(--serif); font-size: 1.1rem; letter-spacing: .08em;
+  padding: .55rem 2.4rem; border: 1px solid currentColor;
+  transition: background .2s, color .2s;
+}
+.hero .btn:hover { background: var(--on-green); color: var(--green); }
+.btn.solid { background: var(--green); color: var(--on-green); border-color: var(--green); }
+.btn.solid:hover { background: var(--ink); border-color: var(--ink); }
+.btn[aria-disabled="true"] { opacity: .6; pointer-events: none; }
+
+/* ---------- Sections ---------- */
+section { padding: clamp(4rem, 9vw, 6.5rem) 1.25rem; scroll-margin-top: 5rem; }
+section.alt { background: var(--paper-deep); }
+.wrap { max-width: 44rem; margin: 0 auto; text-align: center; }
+.wide { max-width: 64rem; margin: 0 auto; }
+h2 {
+  font-family: var(--script); font-weight: 400;
+  font-size: clamp(3rem, 8vw, 4.6rem);
+  line-height: 1.1; margin: 0 0 1.5rem; color: var(--green); text-align: center;
+}
+h3 { font-weight: 600; font-size: 1.3rem; margin: 0 0 .3rem; color: var(--green); }
+p { margin: 0 0 1rem; }
+.lead { font-style: italic; }
+.small { font-size: 1rem; color: var(--muted); }
+
+/* countdown */
+.countdown { margin-top: 2.2rem; font-style: italic; color: var(--muted); }
+.countdown strong { font-style: normal; font-weight: 500; font-size: 2.2rem; color: var(--green); display: block; line-height: 1.1; }
+
+/* ---------- Schedule ---------- */
+.timeline {
+  list-style: none; padding: 0; margin: 2rem auto 0;
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(118px, 1fr)); gap: 2rem 1rem;
+  text-align: center; position: relative;
+}
+.timeline li { position: relative; }
+.timeline svg { width: 58px; height: 58px; stroke: var(--green); fill: none; stroke-width: 1.3; stroke-linecap: round; stroke-linejoin: round; margin: 0 auto .6rem; }
+.timeline .t { font-size: 1rem; letter-spacing: .06em; color: var(--muted); }
+.timeline .tt { font-style: italic; font-size: 1.35rem; line-height: 1.25; color: var(--ink); }
+
+/* ---------- Details cards (venue / dress) ---------- */
+.pair { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 3rem; margin-top: 3.5rem; text-align: center; }
+.pair .label { font-style: italic; color: var(--muted); font-size: 1rem; }
+
+/* ---------- Travel ---------- */
+.travel { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem 2.5rem; margin-top: 1rem; }
+.travel div { border-top: 1px solid var(--sage); padding-top: 1rem; }
+.stay { margin-top: 3.5rem; text-align: center; }
+.stay ul { list-style: none; padding: 0; margin: 1rem 0 0; display: grid; gap: 1rem; }
+
+/* ---------- Gallery ---------- */
+.gallery { columns: var(--cols, 3) 220px; column-gap: .8rem; }
+.gallery figure { margin: 0 0 .8rem; break-inside: avoid; }
+.gallery button { all: unset; cursor: zoom-in; display: block; }
+.gallery button:focus-visible { outline: 2px solid var(--wheat); outline-offset: 3px; }
+.gallery figcaption { font-style: italic; font-size: .95rem; color: var(--muted); padding-top: .3rem; }
+.empty { text-align: center; font-style: italic; color: var(--muted); }
+dialog { border: 0; padding: 0; background: transparent; max-width: 92vw; }
+dialog::backdrop { background: rgba(25,28,22,.88); }
+dialog img { max-height: 88vh; width: auto; }
+
+/* ---------- FAQ ---------- */
+.faq { max-width: 40rem; margin: 0 auto; text-align: left; }
+.faq details { border-bottom: 1px solid color-mix(in srgb, var(--sage) 60%, transparent); padding: .9rem 0; }
+.faq summary { cursor: pointer; font-weight: 600; color: var(--green); list-style: none; display: flex; justify-content: space-between; gap: 1rem; }
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary::after { content: "+"; font-weight: 400; transition: transform .2s; }
+.faq details[open] summary::after { transform: rotate(45deg); }
+.faq details p { margin: .6rem 0 0; }
+
+/* ---------- RSVP ---------- */
+.rsvp { background: var(--green); color: var(--on-green); }
+.rsvp h2 { color: var(--on-green); }
+.rsvp .btn { color: var(--on-green); margin-top: 1rem; }
+.rsvp .btn:hover { background: var(--on-green); color: var(--green); }
+
+footer { text-align: center; padding: 3rem 1rem; color: var(--muted); font-size: 1rem; }
+footer .mono { font-family: var(--script); font-size: 2.4rem; color: var(--green); display: block; }
+
+.oops { max-width: 34rem; margin: 20vh auto; padding: 1rem; text-align: center; }
+
+@media (max-width: 560px) {
+  body { font-size: 1.12rem; }
+  .nav ul { gap: 0 1rem; font-size: .95rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  * { transition: none !important; }
+}
+
+/* map in Getting there */
+.map { display: block; margin: 3rem auto 0; max-width: 52rem; text-decoration: none; text-align: center; }
+.map img { width: 100%; border: 1px solid color-mix(in srgb, var(--sage) 50%, transparent); }
+.map span { display: block; padding-top: .4rem; }
+#wishing-well .btn { margin-top: 1rem; }
