@@ -48,7 +48,7 @@ window.WEDDING = {
     { file: "photos/jyemollyhike.jpg", caption: "" },
     { file: "photos/jyemolly.jpg", caption: "" },
   ],
-  galleryNote: "We'll upload photos from the wedding here for everyone to see!",   // "" to hide
+  galleryNote: "We'll upload photos from the wedding here!",   // "" to hide
   mapImage: "photos/map.jpg",   // the map in "Getting there" ("" to hide it)
 
   /* ---------- Welcome ---------- */
@@ -72,7 +72,7 @@ window.WEDDING = {
 
   /* ---------- Dress code ---------- */
   dressCode: {
-    title: "TBC",           // e.g. "Cocktail"
+    title: "Formal or semi-formal",           // e.g. "Cocktail"
     text: "The ceremony and reception will be outdoors. There will be outdoor heating, but we recommend bringing something warm just in case!",
   },
 
@@ -100,15 +100,17 @@ window.WEDDING = {
 
   /* ---------- FAQ ---------- */
   faqs: [
-    { q: "What is the dinner on the previous night?",
-      a: "We're going to book a nearby pub (venue TBC) for anybody that wants to come for a causal dinner/drinks the night before, just let us know if you want to come along!" },
+    { q: "What is the dinner the night before?",
+      a: "We're going to book a pub nearby (venue TBC) for anybody that wants to come for a causal dinner/drinks the night before, just let us know if you want to come along!" },
     { q: "What if it rains?",
       a: "The venue has covered spaces, so the day will go ahead either way." },
     { q: "I have dietary requirements.",
       a: "Let us know in the RSVP form and we'll make sure there's something there for you!" },
     { q: "Where can I park?",
       a: "Parking is tricky. There's a couple of small carparks close by, but these tend to be busy, and nearby streets are mostly 2-hour limits that are closely monitored, so we'd probably recommend a cab, Uber or public transport." },
-    { q: "Who do I contact with questions?",
+     { q: "What if I can't make it?",
+      a: "No worries! Just let us know in the RSVP link below" },
+     { q: "Who do I contact with questions?",
       a: "Give either of us a call or text:", showContacts: true },
   ],
 
