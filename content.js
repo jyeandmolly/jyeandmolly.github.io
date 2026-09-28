@@ -65,7 +65,7 @@ window.WEDDING = {
     { time: "TBC",    title: "Drinks & canapés", icon: "drinks" },
     { time: "TBC",    title: "Dinner",        icon: "dinner" },
     { time: "TBC",    title: "Dancing",       icon: "dance"  },
-    { time: "TBC",    title: "Carriages",     icon: "home"   },
+    { time: "11:30pm",    title: "Venue Closes",     icon: "home"   },
   ],
   scheduleNote: "Please aim to arrive by 2:30pm.",
 
