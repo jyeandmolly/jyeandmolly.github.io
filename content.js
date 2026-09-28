@@ -90,7 +90,7 @@ window.WEDDING = {
   accommodation: [
     // { name: "Hotel name", area: "Newtown", note: "10 min walk", link: "https://..." },
   ],
-  accommodationNote: "Accommodation suggestions coming soon.",
+  accommodationNote: "Anywhere in the city or surrounding suburbs should be easy to get to the venue from on the day. We'd probably reccomend Camperdown, Newtown, Glebe, Annandale, Enmore, Liechardt, etc. if you want to be really close by. Please let us know if we can help or if you need any advice finding a place to stay!",
 
   /* ---------- Wishing well ---------- */
   wishingWell: [
