@@ -130,5 +130,5 @@ window.WEDDING = {
      Make a Google Form, click Send → link icon, copy the link, and
      paste it into rsvpLink. Until then the button says "coming soon". */
   rsvpLink: "https://docs.google.com/forms/d/e/1FAIpQLSfK_feLYe8UxK-cafNx4dR2eONQviFFc0ErFNrsNdTGOd2loQ/viewform?usp=publish-editor",
-  rsvpBy: "...",            // e.g. "1 April 2027"
+  rsvpBy: "1 April 2027",            // e.g. "1 April 2027"
 };
