@@ -79,7 +79,7 @@ window.WEDDING = {
   /* ---------- Getting there & staying nearby ---------- */
   travel: [
     { heading: "By train",
-      text: "Newtown Station (T2 line) is about a 10-minute walk from the venue." },
+      text: "Newtown Station (T2 line) is about a 15-20 minute walk from the venue." },
     { heading: "By bus",
       text: "Plenty of buses run along Parramatta Road, with stops near Mallett Street and Missenden Road." },
     { heading: "By car",
