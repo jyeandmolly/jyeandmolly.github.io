@@ -47,8 +47,6 @@ window.WEDDING = {
     { file: "photos/dinner-date.jpg", caption: "" },
     { file: "photos/jyemollyhike.jpg", caption: "" },
     { file: "photos/jyemolly.jpg", caption: "" },
- #   { file: "photos/young.jpg", caption: "" },
- #  { file: "photos/sydney.jpg", caption: "" },
   ],
   galleryNote: "We'll upload photos from the wedding here!",   // "" to hide
   mapImage: "photos/map.jpg",   // the map in "Getting there" ("" to hide it)
