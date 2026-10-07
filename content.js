@@ -113,7 +113,7 @@ window.WEDDING = {
     { q: "What if it rains?",
       a: "The ceremony will hopefully be outdoors, but the venue has covered spaces, so the day will go ahead either way." },
     { q: "Where can I park?",
-      a: "Parking might be a painn.. There's a couple of small carparks close by, but these tend to be busy, and nearby streets are mostly 2-hour limits that are closely monitored, so we'd probably recommend a cab, Uber or public transport." },
+      a: "Parking might be a pain.. There's a couple of small carparks close by, but these tend to be busy, and nearby streets are mostly 2-hour limits that are closely monitored, so we'd probably recommend a cab, Uber or public transport." },
     { q: "What if I can't make it?",
       a: "No worries! Just let us know in the RSVP link below" },
      { q: "Who do I contact with questions?",
